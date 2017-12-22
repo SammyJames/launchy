@@ -1,0 +1,9 @@
+[submodule "deps/beast"]
+	path = deps/beast
+	url = https://github.com/boostorg/beast.git
+[submodule "deps/spdlog"]
+	path = deps/spdlog
+	url = https://github.com/gabime/spdlog.git
+[submodule "deps/tinyxml2"]
+	path = deps/tinyxml2
+	url = https://github.com/leethomason/tinyxml2.git
