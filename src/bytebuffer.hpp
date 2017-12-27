@@ -51,6 +51,8 @@ inline void ByteBuffer::Read<string>(string& out)
 
     if (len > 0)
     {
+        out.resize((size_t)len);
+        ReadMemory((u8*)out.data(), (size_t)len);
     }
 }
 

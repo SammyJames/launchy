@@ -29,6 +29,7 @@ public:
     {
         ByteBuffer test;
         test.Write(string{"Hello World"});
+        auto str = test.ToString();
 
         string res;
         test.Read(res);
