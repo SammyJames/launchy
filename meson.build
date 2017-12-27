@@ -1,5 +1,8 @@
 project('launchy', 'cpp', 
-    default_options : ['cpp_std=c++1z'], 
+    default_options : 
+    [
+        'cpp_std=c++1z'
+    ], 
     license : 'MIT')
 
 boost = dependency('boost', 
