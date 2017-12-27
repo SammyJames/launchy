@@ -3,7 +3,12 @@ project('launchy', 'cpp',
     license : 'MIT')
 
 boost = dependency('boost', 
-    modules : ['system', 'thread'], 
+    modules : 
+    [
+        'system', 
+        'thread', 
+        'filesystem'
+    ], 
     static : true)
 
 openssl = dependency('openssl', 
@@ -11,6 +16,13 @@ openssl = dependency('openssl',
 
 subdir('deps')
 
-executable('launchy', ['src/main.cpp', 'src/step.cpp', 'src/launcher.cpp', 'src/client.cpp'], 
+executable('launchy', 
+    [ 
+        'src/main.cpp', 
+        'src/step.cpp', 
+        'src/launcher.cpp', 
+        'src/client.cpp',
+        'src/bytebuffer.cpp',
+    ],
     dependencies : [ spdlog, boost, openssl, beast, tinyxml2 ],
-    link_args : '-lc++experimental')
+    include_directories : [  ])

@@ -40,17 +40,17 @@ namespace Impl
 
         void Disconnect() { m_socket.close(); }
 
-        void Write(const string& data)
+        void Write(const ByteBuffer& data)
         {
-            boost::asio::write(m_socket, boost::asio::buffer(data.data(), data.size()));
+            // boost::asio::write(m_socket, boost::asio::buffer(data.data(), data.size()));
         }
 
-        void Read(string& data)
+        void Read(ByteBuffer& data)
         {
-            boost::asio::read_until(m_socket, m_buffer, '\0');
-            std::copy(std::istreambuf_iterator<char>(&m_buffer),
+            // boost::asio::read_until(m_socket, m_buffer, '\0');
+            /*std::copy(std::istreambuf_iterator<char>(&m_buffer),
                       std::istreambuf_iterator<char>(),
-                      std::back_inserter(data));
+                      std::back_inserter(data));*/
         }
 
     private:
@@ -112,7 +112,7 @@ void Client::Disconnect()
     }
 }
 
-void Client::Write(const string& data)
+void Client::Write(const ByteBuffer& data)
 {
     if (m_session)
     {
@@ -120,7 +120,7 @@ void Client::Write(const string& data)
     }
 }
 
-void Client::Read(string& data)
+void Client::Read(ByteBuffer& data)
 {
     if (m_session)
     {

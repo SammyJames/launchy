@@ -1,6 +1,7 @@
 #pragma once
-
 #include "types.hpp"
+
+#include "bytebuffer.hpp"
 
 #include <boost/asio/io_service.hpp>
 #include <vector>
@@ -20,8 +21,8 @@ public:
     void Disconnect();
     const string& GetAuth() const { return m_auth; }
     const string& GetUser() const { return m_user; }
-    void Write(const string& data);
-    void Read(string& data);
+    void Write(const ByteBuffer& data);
+    void Read(ByteBuffer& data);
 
 private:
     string m_host;

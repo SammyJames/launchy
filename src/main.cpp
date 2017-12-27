@@ -9,12 +9,12 @@
 #include "spdlog/fmt/ostr.h"
 #include "spdlog/spdlog.h"
 
-#include <experimental/filesystem>
+#include <boost/filesystem.hpp>
 
 namespace spd = spdlog;
 using std::make_tuple;
 
-namespace fs = std::experimental::filesystem;
+namespace fs = boost::filesystem;
 
 struct AuthInfo
 {
@@ -27,6 +27,12 @@ class ProcessCommandLine : public IStep
 public:
     tuple<bool, any> RunStep(any&) override
     {
+        ByteBuffer test;
+        test.Write(string{"Hello World"});
+
+        string res;
+        test.Read(res);
+
         return make_tuple(true, any(AuthInfo{"username", "password"}));
     }
     const char* NameOf() const override { return "Process Command Line"; }
@@ -91,12 +97,12 @@ public:
             buffer.Write<u8>(1u);
             buffer.Write(file_size);
 
-            client->Write(buffer.str().c_str());
+            client->Write(buffer);
 
-            string dest;
+            ByteBuffer dest;
             client->Read(dest);
 
-            spd::get("Launchy")->info("{0}", dest);
+            spd::get("Launchy")->info("{0}", dest.ToString());
         }
         return make_tuple(false, any());
     }
